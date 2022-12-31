@@ -6,7 +6,7 @@ const Write = () => {
         <div>
             <img
                 src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                className="w-full h-[400px]"
+                className="w-full h-[400px] rounded-2xl"
                 alt=""
             />
             <div className="relative pt-10">
@@ -34,12 +34,12 @@ const Write = () => {
                         id=""
                         rows="13"
                         placeholder="Tell your story..."
-                        className="w-[85%] mt-5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:rounded-md"
+                        className="w-[85%] text-lg text-black mt-5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:rounded-md"
                     ></textarea>
                     <input
                         type="submit"
                         value="Publish"
-                        className="bg-purple-400 px-4 py-2 rounded-lg absolute top-5 right-0"
+                        className="bg-purple-400 px-4 py-2 rounded-lg absolute top-5 right-0 cursor-pointer"
                     />
                 </form>
             </div>
