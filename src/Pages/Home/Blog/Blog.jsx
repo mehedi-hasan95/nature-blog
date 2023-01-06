@@ -1,14 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
+import Loading from "../../../Components/Loading/Loading";
 import Sidebar from "../Sidebar/Sidebar";
 
 const Blog = () => {
-    const {
-        data: postData,
-        isLoading,
-        error,
-    } = useQuery({
+    const { data: postData, isLoading } = useQuery({
         queryKey: ["posts"],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/api/post`);
@@ -16,7 +13,9 @@ const Blog = () => {
             return data;
         },
     });
-    console.log(postData);
+
+    if (isLoading) return <Loading />;
+
     return (
         <div className="grid grid-cols-4 gap-6 md:gap-12 lg:gap-20 pt-6 rounded-md shadow-sm relative">
             <div className="grid gird-cols-1 md:grid-cols-2 gap-10 col-span-full md:col-span-3">
@@ -40,7 +39,11 @@ const Blog = () => {
                             <p className="text-center font-lobster">
                                 {new Date(data.createdAt).toDateString()}
                             </p>
-                            <p className="text-ellipsis pt-4">{data.desc}</p>
+                            <p className="text-ellipsis pt-4">
+                                {data.desc.length > 300
+                                    ? data.desc.substring(0, 300)
+                                    : data.desc}
+                            </p>
                         </div>
                     </div>
                 ))}
