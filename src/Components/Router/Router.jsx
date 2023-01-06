@@ -14,7 +14,12 @@ const router = createBrowserRouter([
             { path: "/", element: <Home /> },
             { path: "write", element: <Write /> },
             { path: "update-profile", element: <UpdateProfile /> },
-            { path: "/blog/:id", element: <Singlepage></Singlepage> },
+            {
+                path: "/blog/:id",
+                element: <Singlepage></Singlepage>,
+                loader: ({ params }) =>
+                    fetch(`http://localhost:5000/api/post/${params.id}`),
+            },
             { path: "test", element: <TestFile></TestFile> },
         ],
     },
