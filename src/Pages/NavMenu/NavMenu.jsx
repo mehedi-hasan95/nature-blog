@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     FaFacebookSquare,
     FaInstagramSquare,
@@ -9,30 +9,100 @@ import {
 import { Link } from "react-router-dom";
 
 const NavMenu = () => {
+    const [navbar, setNavbar] = useState(false);
     return (
-        <div className="flex justify-between items-center my-5">
-            <div className="flex items-center gap-4 text-xl">
-                <FaFacebookSquare className="cursor-pointer" />
-                <FaTwitterSquare className="cursor-pointer" />
-                <FaPinterestSquare className="cursor-pointer" />
-                <FaInstagramSquare className="cursor-pointer" />
+        <nav className="w-full bg-white sticky top-0 z-50 mb-5">
+            <div className="justify-between mx-auto lg:container md:items-center md:flex">
+                <div>
+                    <div className="flex items-center justify-between py-3 md:py-5 md:block">
+                        <div className="flex items-center gap-4 text-xl">
+                            <FaFacebookSquare className="cursor-pointer" />
+                            <FaTwitterSquare className="cursor-pointer" />
+                            <FaPinterestSquare className="cursor-pointer" />
+                            <FaInstagramSquare className="cursor-pointer" />
+                        </div>
+                        <div className="md:hidden">
+                            <button
+                                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                                onClick={() => setNavbar(!navbar)}
+                            >
+                                {navbar ? (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="w-6 h-6 text-black"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                ) : (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="w-6 h-6 text-black"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M4 6h16M4 12h16M4 18h16"
+                                        />
+                                    </svg>
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div
+                        className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+                            navbar ? "block" : "hidden"
+                        }`}
+                    >
+                        <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+                            <li className="text-black hover:text-indigo-200 text-xl uppercase">
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li className="text-black hover:text-indigo-200 text-xl uppercase">
+                                <Link to="/about">About</Link>
+                            </li>
+                            <li className="text-black hover:text-indigo-200 text-xl uppercase">
+                                <Link to="/contact">Contact</Link>
+                            </li>
+                            <li className="text-black hover:text-indigo-200 text-xl uppercase">
+                                <Link to="/write">Write</Link>
+                            </li>
+                            <li className="text-black hover:text-indigo-200 text-xl uppercase">
+                                <Link to="/login">Login</Link>
+                            </li>
+                        </ul>
+
+                        <div className="mt-3 space-y-2 md:hidden">
+                            <img
+                                className=" h-12 w-12 rounded-full"
+                                src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                alt=""
+                            />
+                            <FaSearch />
+                        </div>
+                    </div>
+                </div>
+                <div className="hidden md:flex items-center gap-4">
+                    <img
+                        className=" h-12 w-12 rounded-full"
+                        src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                        alt=""
+                    />
+                    <FaSearch />
+                </div>
             </div>
-            <div className="flex items-center gap-4 uppercase text-xl font-poppins">
-                <Link to="/">Home</Link>
-                <Link to="/about">About</Link>
-                <Link to="/contact">Contact</Link>
-                <Link to="/write">Write</Link>
-                <Link to="/login">Login</Link>
-            </div>
-            <div className="flex items-center gap-4">
-                <img
-                    className=" h-12 w-12 rounded-full"
-                    src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                    alt=""
-                />
-                <FaSearch />
-            </div>
-        </div>
+        </nav>
     );
 };
 
