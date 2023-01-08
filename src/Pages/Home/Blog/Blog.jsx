@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Loading from "../../../Components/Loading/Loading";
 import Sidebar from "../Sidebar/Sidebar";
 
 const Blog = () => {
+    const { search } = useLocation();
     const { data: postData, isLoading } = useQuery({
-        queryKey: ["posts"],
+        queryKey: ["posts", search],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/api/post`);
+            const res = await fetch(`http://localhost:5000/api/post` + search);
             const data = await res.json();
             return data;
         },

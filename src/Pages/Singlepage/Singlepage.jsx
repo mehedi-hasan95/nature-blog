@@ -1,13 +1,11 @@
 import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Sidebar from "../Home/Sidebar/Sidebar";
 
 const Singlepage = () => {
     const { categories, title, desc, createdAt, username } = useLoaderData();
-    const data = useLoaderData();
-    console.log(data);
     return (
         <div>
             <div className="grid grid-cols-4 gap-6 md:gap-12 lg:gap-20 pt-6 rounded-md shadow-sm relative">
@@ -30,7 +28,11 @@ const Singlepage = () => {
                         <div className="flex justify-between pt-5">
                             <h2 className="text-xl">
                                 Author:{" "}
-                                <span className="font-bold">{username}</span>
+                                <span className="font-bold">
+                                    <Link to={`/?user=${username}`}>
+                                        {username}
+                                    </Link>
+                                </span>
                             </h2>
                             <p>{new Date(createdAt).toDateString()}</p>
                         </div>

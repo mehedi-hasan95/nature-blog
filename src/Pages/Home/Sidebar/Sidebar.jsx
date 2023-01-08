@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import {
     FaFacebookSquare,
@@ -6,8 +7,19 @@ import {
     FaTwitterSquare,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Loading from "../../../Components/Loading/Loading";
 
 const Sidebar = () => {
+    const { data: category, isLoading } = useQuery({
+        queryKey: ["category"],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/api/category`);
+            const data = await res.json();
+            return data;
+        },
+    });
+
+    if (isLoading) return <Loading />;
     return (
         <div>
             <div>
@@ -32,10 +44,9 @@ const Sidebar = () => {
                     Categories
                 </h3>
                 <div className="grid grid-cols-2 gap-4 text-xl mt-8">
-                    <Link>Life</Link>
-                    <Link>Nature</Link>
-                    <Link>Blog</Link>
-                    <Link>Vlog</Link>
+                    {category?.map((cat) => (
+                        <Link key={cat._id}>{cat.categories}</Link>
+                    ))}
                 </div>
             </div>
             <div className="text-center pt-8">
