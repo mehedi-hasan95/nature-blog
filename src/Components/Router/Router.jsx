@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../../Pages/Home/Home/Home";
 import Write from "../../Pages/Home/Write/Write";
+import Login from "../../Pages/Login/Login";
+import Register from "../../Pages/Login/Register";
 import Singlepage from "../../Pages/Singlepage/Singlepage";
-import TestFile from "../../Pages/UpdateProfile/TestFile";
 import UpdateProfile from "../../Pages/UpdateProfile/UpdateProfile";
 import Main from "../Layout/Main";
 
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
                 loader: ({ params }) =>
                     fetch(`http://localhost:5000/api/post/${params.id}`),
             },
-            { path: "test", element: <TestFile></TestFile> },
+            { path: "login", element: <Login /> },
+            { path: "register", element: <Register /> },
         ],
     },
 ]);

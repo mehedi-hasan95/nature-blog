@@ -18,3 +18,22 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+
+.login-bg {
+    background-image: url("https://i.ibb.co/ZzQpmk8/login.webp");
+    background-size: cover;
+    z-index: 2;
+    position: relative;
+}
+
+.login-bg:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    content: "";
+    opacity: 0.3;
+    z-index: -1;
+}

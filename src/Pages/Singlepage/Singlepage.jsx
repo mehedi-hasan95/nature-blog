@@ -28,11 +28,12 @@ const Singlepage = () => {
                         <div className="flex justify-between pt-5">
                             <h2 className="text-xl">
                                 Author:{" "}
-                                <span className="font-bold">
-                                    <Link to={`/?user=${username}`}>
-                                        {username}
-                                    </Link>
-                                </span>
+                                <Link
+                                    to={`/?user=${username}`}
+                                    className="font-bold text-blue-700"
+                                >
+                                    {username}
+                                </Link>
                             </h2>
                             <p>{new Date(createdAt).toDateString()}</p>
                         </div>
