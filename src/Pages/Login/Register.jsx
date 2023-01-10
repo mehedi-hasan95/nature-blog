@@ -6,7 +6,6 @@ const Register = () => {
     const [error, setError] = useState("");
     const [usedEmail, setUsedEmail] = useState(false);
     const navigage = useNavigate();
-    console.log(usedEmail);
     const registerUser = async (e) => {
         e.preventDefault();
         setError("");
