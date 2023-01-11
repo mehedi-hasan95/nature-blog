@@ -28,24 +28,44 @@ const Write = () => {
             userPost.photo = fileName;
 
             try {
-                await axios.post("http://localhost:5000/api/image/", data);
+                fetch("http://localhost:5000/api/image/", {
+                    method: "POST", // or 'PUT'
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
             } catch (error) {}
             try {
-                const res = await axios.post(
-                    "http://localhost:5000/api/post/",
-                    userPost
-                );
-                navigate(`/blog/` + res.data._id);
+                fetch("http://localhost:5000/api/post/", {
+                    method: "POST", // or 'PUT'
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(userPost),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data._id) {
+                            navigate(`/blog/` + data._id);
+                        }
+                    });
             } catch (error) {}
         }
     };
     return (
         <div>
-            {file && (
+            {file ? (
                 <img
                     src={URL.createObjectURL(file)}
                     className="w-full h-[400px] rounded-2xl"
                     alt=""
+                />
+            ) : (
+                <img
+                    src="https://img.freepik.com/free-vector/thumbnail-design-with-mountain-landscape_1308-121802.jpg?w=1480&t=st=1673455975~exp=1673456575~hmac=a28dc4b779971413bd074818185ab3a08f57636e817c137871bd354b88da3d25"
+                    alt=""
+                    className="w-full h-[400px] rounded-2xl"
                 />
             )}
             <div className="relative pt-10">
