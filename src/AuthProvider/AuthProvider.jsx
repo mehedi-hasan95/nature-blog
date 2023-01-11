@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Reducer from "./Reducer";
 
@@ -14,6 +14,11 @@ export const authContext = createContext(INITIAL_STATE);
 
 const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
+
+    useEffect(() => {
+        localStorage.setItem("user", JSON.stringify(state.user));
+    }, [state.user]);
+
     const authInfo = {
         user: state.user,
         isFetching: state.isFetching,

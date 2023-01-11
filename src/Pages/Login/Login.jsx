@@ -1,38 +1,30 @@
-import React, { useContext, useState } from "react";
+import axios from "axios";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
     const [error, setError] = useState("");
+    const userRef = useRef();
+    const passwordRef = useRef();
     const { user, dispatch, isFetching } = useContext(authContext);
     const registerUser = async (e) => {
         e.preventDefault();
         setError("");
-        const form = e.target;
-        const username = form.text.value;
-        const password = form.password.value;
-
-        const data = { username, password };
         dispatch({ type: "LOGIN_START" });
         try {
-            const res = await fetch("http://localhost:5000/api/auth/login", {
-                method: "POST", // or 'PUT'
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (res.status === 200) {
-                dispatch({ type: "LOGIN_SUCCESS", payload: res });
-            } else {
-                setError("Wrong username or password");
-            }
+            const res = await axios.post(
+                "http://localhost:5000/api/auth/login",
+                {
+                    username: userRef.current.value,
+                    password: passwordRef.current.value,
+                }
+            );
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         } catch (err) {
             dispatch({ type: "LOGIN_FAILURE" });
         }
     };
-    console.log(user);
     return (
         <div className="login-bg">
             <div className="flex mx-auto flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100">
@@ -55,6 +47,7 @@ const Login = () => {
                                 Username
                             </label>
                             <input
+                                ref={userRef}
                                 type="text"
                                 name="text"
                                 id="text"
@@ -69,6 +62,7 @@ const Login = () => {
                                 </label>
                             </div>
                             <input
+                                ref={passwordRef}
                                 type="password"
                                 name="password"
                                 id="password"
