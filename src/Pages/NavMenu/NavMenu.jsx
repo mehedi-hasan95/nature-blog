@@ -10,8 +10,12 @@ import { Link } from "react-router-dom";
 import { authContext } from "../../AuthProvider/AuthProvider";
 
 const NavMenu = () => {
-    const { user } = useContext(authContext);
+    const { user, dispatch } = useContext(authContext);
     const [navbar, setNavbar] = useState(false);
+
+    const handleLogout = () => {
+        dispatch({ type: "LOGOUT" });
+    };
     return (
         <nav className="w-full bg-white sticky top-0 z-50 mb-5">
             <div className="justify-between mx-auto lg:container md:items-center md:flex">
@@ -82,7 +86,7 @@ const NavMenu = () => {
                             </li>
                             <li className="text-black hover:text-indigo-200 text-xl uppercase">
                                 {user ? (
-                                    <Link to="">Log Out</Link>
+                                    <Link onClick={handleLogout}>Log Out</Link>
                                 ) : (
                                     <Link to="/login">Login</Link>
                                 )}
@@ -93,7 +97,7 @@ const NavMenu = () => {
                             {user ? (
                                 <img
                                     className=" h-12 w-12 rounded-full"
-                                    src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                    src={user?.profilePic}
                                     alt=""
                                 />
                             ) : (
@@ -107,7 +111,7 @@ const NavMenu = () => {
                     {user ? (
                         <img
                             className=" h-12 w-12 rounded-full"
-                            src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                            src={user?.profilePic}
                             alt=""
                         />
                     ) : (
