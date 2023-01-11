@@ -1,16 +1,55 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import { SlPlus } from "react-icons/sl";
+import { useNavigate } from "react-router-dom";
+import { authContext } from "../../../AuthProvider/AuthProvider";
 
 const Write = () => {
+    const navigate = useNavigate();
+    const { user } = useContext(authContext);
+    const [file, setFile] = useState(null);
+    const submitPost = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const title = form.title.value;
+        const desc = form.message.value;
+
+        const userPost = {
+            username: user?.username,
+            title,
+            desc,
+        };
+
+        if (file) {
+            const data = new FormData();
+            const fileName = Date.now() + file.name;
+            data.append("name", fileName);
+            data.append("file", file);
+            userPost.photo = fileName;
+
+            try {
+                await axios.post("http://localhost:5000/api/image/", data);
+            } catch (error) {}
+            try {
+                const res = await axios.post(
+                    "http://localhost:5000/api/post/",
+                    userPost
+                );
+                navigate(`/blog/` + res.data._id);
+            } catch (error) {}
+        }
+    };
     return (
         <div>
-            <img
-                src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                className="w-full h-[400px] rounded-2xl"
-                alt=""
-            />
+            {file && (
+                <img
+                    src={URL.createObjectURL(file)}
+                    className="w-full h-[400px] rounded-2xl"
+                    alt=""
+                />
+            )}
             <div className="relative pt-10">
-                <form>
+                <form onSubmit={submitPost}>
                     <div className="flex gap-5 items-center">
                         <label htmlFor="added">
                             <SlPlus className=" text-3xl font-bold cursor-pointer" />
@@ -20,6 +59,7 @@ const Write = () => {
                             name="file"
                             id="added"
                             className="hidden"
+                            onChange={(e) => setFile(e.target.files[0])}
                         />
                         <input
                             type="text"
