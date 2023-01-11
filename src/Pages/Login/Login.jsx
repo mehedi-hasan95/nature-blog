@@ -79,9 +79,10 @@ const Login = () => {
                         )}
                         <div>
                             <input
+                                disabled={isFetching}
                                 type="submit"
                                 value="Login"
-                                className="w-full px-8 py-3 font-semibold rounded-md bg-violet-400 dark:text-gray-900 cursor-pointer"
+                                className="w-full disabled:cursor-not-allowed disabled:bg-slate-600 px-8 py-3 font-semibold rounded-md bg-violet-400 dark:text-gray-900 cursor-pointer"
                             />
                         </div>
                         <p className="px-6 text-sm text-center dark:text-gray-400 text-white">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
     FaFacebookSquare,
     FaInstagramSquare,
@@ -7,8 +7,10 @@ import {
     FaTwitterSquare,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { authContext } from "../../AuthProvider/AuthProvider";
 
 const NavMenu = () => {
+    const { user } = useContext(authContext);
     const [navbar, setNavbar] = useState(false);
     return (
         <nav className="w-full bg-white sticky top-0 z-50 mb-5">
@@ -79,26 +81,38 @@ const NavMenu = () => {
                                 <Link to="/write">Write</Link>
                             </li>
                             <li className="text-black hover:text-indigo-200 text-xl uppercase">
-                                <Link to="/login">Login</Link>
+                                {user ? (
+                                    <Link to="">Log Out</Link>
+                                ) : (
+                                    <Link to="/login">Login</Link>
+                                )}
                             </li>
                         </ul>
 
                         <div className="mt-3 space-y-2 md:hidden">
-                            <img
-                                className=" h-12 w-12 rounded-full"
-                                src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                alt=""
-                            />
+                            {user ? (
+                                <img
+                                    className=" h-12 w-12 rounded-full"
+                                    src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                    alt=""
+                                />
+                            ) : (
+                                ""
+                            )}
                             <FaSearch />
                         </div>
                     </div>
                 </div>
                 <div className="hidden md:flex items-center gap-4">
-                    <img
-                        className=" h-12 w-12 rounded-full"
-                        src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt=""
-                    />
+                    {user ? (
+                        <img
+                            className=" h-12 w-12 rounded-full"
+                            src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                            alt=""
+                        />
+                    ) : (
+                        ""
+                    )}
                     <FaSearch />
                 </div>
             </div>
