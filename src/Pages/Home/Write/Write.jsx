@@ -22,36 +22,21 @@ const Write = () => {
 
         if (file) {
             const data = new FormData();
-            const fileName = Date.now() + file.name;
-            data.append("name", fileName);
+            const filename = Date.now() + file.name;
+            data.append("name", filename);
             data.append("file", file);
-            userPost.photo = fileName;
-
+            userPost.photo = filename;
             try {
-                fetch("http://localhost:5000/api/image/", {
-                    method: "POST", // or 'PUT'
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                });
-            } catch (error) {}
-            try {
-                fetch("http://localhost:5000/api/post/", {
-                    method: "POST", // or 'PUT'
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(userPost),
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data._id) {
-                            navigate(`/blog/` + data._id);
-                        }
-                    });
-            } catch (error) {}
+                await axios.post("http://localhost:5000/api/image", data);
+            } catch (err) {}
         }
+        try {
+            const res = await axios.post(
+                "http://localhost:5000/api/post",
+                userPost
+            );
+            navigate("/blog/" + res.data._id);
+        } catch (err) {}
     };
     return (
         <div>

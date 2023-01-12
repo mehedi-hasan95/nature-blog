@@ -5,6 +5,7 @@ import Loading from "../../../Components/Loading/Loading";
 import Sidebar from "../Sidebar/Sidebar";
 
 const Blog = () => {
+    const blogImage = "http://localhost:5000/images/";
     const { search } = useLocation();
     const { data: postData, isLoading } = useQuery({
         queryKey: ["posts", search],
@@ -24,7 +25,7 @@ const Blog = () => {
                     <div key={data._id}>
                         <img
                             className="w-full"
-                            src="https://images.unsplash.com/photo-1611918126831-0a8352d6196f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJlJTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                            src={blogImage + data.photo}
                             alt=""
                         />
                         <div className="mt-5">
