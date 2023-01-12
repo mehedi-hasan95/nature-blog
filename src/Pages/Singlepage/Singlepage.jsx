@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useContext } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -25,7 +24,7 @@ const Singlepage = () => {
                 body: JSON.stringify(data),
             })
                 .then((response) => response.json())
-                .then((data) => {
+                .then(() => {
                     navigate("/");
                 });
         } catch (error) {}
@@ -45,7 +44,7 @@ const Singlepage = () => {
                         <div className="items-center">
                             <h2 className="text-center font-lora font-semibold text-2xl">
                                 {title}
-                                {user.username === username && (
+                                {user?.username === username && (
                                     <div className="flex gap-5 lg:float-right">
                                         <FaEdit className="cursor-pointer text-green-700" />
                                         <MdDelete

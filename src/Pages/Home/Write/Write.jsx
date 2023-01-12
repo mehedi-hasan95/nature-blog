@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { SlPlus } from "react-icons/sl";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../../AuthProvider/AuthProvider";
 
 const Write = () => {
@@ -81,11 +81,21 @@ const Write = () => {
                         placeholder="Tell your story..."
                         className="w-[85%] text-lg text-black mt-5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:rounded-md"
                     ></textarea>
-                    <input
-                        type="submit"
-                        value="Publish"
-                        className="bg-purple-400 px-4 py-2 rounded-lg absolute top-5 right-0 cursor-pointer"
-                    />
+                    {user?.username ? (
+                        <input
+                            type="submit"
+                            value="Publish"
+                            className="bg-purple-400 px-4 py-2 rounded-lg absolute top-5 right-0 cursor-pointer"
+                        />
+                    ) : (
+                        <Link to={"/login"}>
+                            <input
+                                type="submit"
+                                value="Publish"
+                                className="bg-purple-400 px-4 py-2 rounded-lg absolute top-5 right-0 cursor-pointer"
+                            />
+                        </Link>
+                    )}
                 </form>
             </div>
         </div>

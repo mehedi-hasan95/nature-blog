@@ -4,9 +4,9 @@ const Banner = () => {
     return (
         <div className="relative">
             <div className="text-center z-10 relative">
-                <h4 className="text-2xl">React App</h4>
+                <h4 className="text-2xl">Wellcome to Nature Blog</h4>
                 <h2 className="text-3xl md:text-5xl lg:text-7xl font-lora pt-3">
-                    Blog
+                    Nature Blog
                 </h2>
             </div>
             <img
