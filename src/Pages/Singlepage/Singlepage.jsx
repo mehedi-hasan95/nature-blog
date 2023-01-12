@@ -52,8 +52,8 @@ const Singlepage = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                navigate("/");
-                console.log("Success:", data);
+                navigate(`/blog/${_id}`);
+                setUpdateMode(false);
             });
     };
 
