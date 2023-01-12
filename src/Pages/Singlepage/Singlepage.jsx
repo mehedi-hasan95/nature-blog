@@ -34,8 +34,8 @@ const Singlepage = () => {
     };
 
     // Update Post
-    const [updateTitle, setUpdateTitle] = useState("");
-    const [updateDesc, setUpdateDesc] = useState("");
+    const [updateTitle, setUpdateTitle] = useState(title);
+    const [updateDesc, setUpdateDesc] = useState(desc);
     const updatePost = () => {
         const data = {
             username: user.username,
