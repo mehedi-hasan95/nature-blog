@@ -19,7 +19,9 @@ const router = createBrowserRouter([
                 path: "/blog/:id",
                 element: <Singlepage></Singlepage>,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/api/post/${params.id}`),
+                    fetch(
+                        `https://nature-blog-server.vercel.app/api/post/${params.id}`
+                    ),
             },
             { path: "login", element: <Login /> },
             { path: "register", element: <Register /> },

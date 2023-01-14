@@ -27,12 +27,15 @@ const Write = () => {
             data.append("file", file);
             userPost.photo = filename;
             try {
-                await axios.post("http://localhost:5000/api/image", data);
+                await axios.post(
+                    "https://nature-blog-server.vercel.app/api/image",
+                    data
+                );
             } catch (err) {}
         }
         try {
             const res = await axios.post(
-                "http://localhost:5000/api/post",
+                "https://nature-blog-server.vercel.app/api/post",
                 userPost
             );
             navigate("/blog/" + res.data._id);

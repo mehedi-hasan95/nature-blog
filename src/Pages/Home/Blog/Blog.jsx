@@ -5,12 +5,14 @@ import Loading from "../../../Components/Loading/Loading";
 import Sidebar from "../Sidebar/Sidebar";
 
 const Blog = () => {
-    const blogImage = "http://localhost:5000/images/";
+    const blogImage = "https://nature-blog-server.vercel.app/images/";
     const { search } = useLocation();
     const { data: postData, isLoading } = useQuery({
         queryKey: ["posts", search],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/api/post` + search);
+            const res = await fetch(
+                `https://nature-blog-server.vercel.app/api/post` + search
+            );
             const data = await res.json();
             return data;
         },

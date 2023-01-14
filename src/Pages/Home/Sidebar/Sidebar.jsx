@@ -13,7 +13,9 @@ const Sidebar = () => {
     const { data: category, isLoading } = useQuery({
         queryKey: ["category"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/api/category`);
+            const res = await fetch(
+                `https://nature-blog-server.vercel.app/api/category`
+            );
             const data = await res.json();
             return data;
         },

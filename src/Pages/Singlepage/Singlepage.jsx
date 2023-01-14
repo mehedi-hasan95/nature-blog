@@ -11,7 +11,7 @@ const Singlepage = () => {
 
     const [updateMode, setUpdateMode] = useState(false);
 
-    const blogImage = "http://localhost:5000/images/";
+    const blogImage = "https://nature-blog-server.vercel.app/images/";
     const { title, desc, createdAt, username, photo, _id } = useLoaderData();
 
     const deletePost = () => {
@@ -19,7 +19,7 @@ const Singlepage = () => {
             username: user.username,
         };
         try {
-            fetch(`http://localhost:5000/api/post/${_id}`, {
+            fetch(`https://nature-blog-server.vercel.app/api/post/${_id}`, {
                 method: "DELETE", // or 'PUT'
                 headers: {
                     "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const Singlepage = () => {
             desc: updateDesc,
         };
 
-        fetch(`http://localhost:5000/api/post/${_id}`, {
+        fetch(`https://nature-blog-server.vercel.app/api/post/${_id}`, {
             method: "PUT", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",

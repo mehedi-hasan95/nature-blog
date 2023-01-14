@@ -14,7 +14,7 @@ const Login = () => {
         dispatch({ type: "LOGIN_START" });
         try {
             const res = await axios.post(
-                "http://localhost:5000/api/auth/login",
+                "https://nature-blog-server.vercel.app/api/auth/login",
                 {
                     username: userRef.current.value,
                     password: passwordRef.current.value,

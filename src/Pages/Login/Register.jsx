@@ -28,7 +28,7 @@ const Register = () => {
         try {
             // Send user to DB
             const res = await axios.post(
-                "http://localhost:5000/api/auth/register",
+                "https://nature-blog-server.vercel.app/api/auth/register",
                 {
                     username,
                     email,
