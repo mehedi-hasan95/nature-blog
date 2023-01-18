@@ -25,11 +25,7 @@ const Blog = () => {
             <div className="grid gird-cols-1 md:grid-cols-2 gap-10 col-span-full md:col-span-3">
                 {postData?.map((data) => (
                     <div key={data._id}>
-                        <img
-                            className="w-full"
-                            src={blogImage + data.photo}
-                            alt=""
-                        />
+                        <img className="w-full" src={data.photo} alt="" />
                         <div className="mt-5">
                             <div className="font-lora text-rose-400 flex gap-5 justify-center text-lg">
                                 <span className=" cursor-default">Nature</span>

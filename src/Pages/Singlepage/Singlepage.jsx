@@ -11,7 +11,6 @@ const Singlepage = () => {
 
     const [updateMode, setUpdateMode] = useState(false);
 
-    const blogImage = "https://nature-blog-server.vercel.app/images/";
     const { title, desc, createdAt, username, photo, _id } = useLoaderData();
 
     const deletePost = () => {
@@ -61,13 +60,7 @@ const Singlepage = () => {
         <div>
             <div className="grid grid-cols-4 gap-6 md:gap-12 lg:gap-20 pt-6 rounded-md shadow-sm relative">
                 <div className="grid gird-cols-1 gap-10 col-span-full md:col-span-3">
-                    {photo && (
-                        <img
-                            src={blogImage + photo}
-                            className="w-full"
-                            alt=""
-                        />
-                    )}
+                    {photo && <img src={photo} className="w-full" alt="" />}
                     <div>
                         <div className="items-center">
                             <h2 className="text-center font-lora font-semibold text-2xl">

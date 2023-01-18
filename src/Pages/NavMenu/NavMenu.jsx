@@ -81,9 +81,14 @@ const NavMenu = () => {
                             <li className="text-black hover:text-indigo-200 text-xl uppercase">
                                 <Link to="/contact">Contact</Link>
                             </li>
-                            <li className="text-black hover:text-indigo-200 text-xl uppercase">
+                            {user && (
+                                <li className="text-black hover:text-indigo-200 text-xl uppercase">
+                                    <Link to="/dashboard">Dashboard</Link>
+                                </li>
+                            )}
+                            {/* <li className="text-black hover:text-indigo-200 text-xl uppercase">
                                 <Link to="/write">Write</Link>
-                            </li>
+                            </li> */}
                             <li className="text-black hover:text-indigo-200 text-xl uppercase">
                                 {user ? (
                                     <Link onClick={handleLogout}>Log Out</Link>
